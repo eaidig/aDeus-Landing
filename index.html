@@ -460,13 +460,32 @@
             max-width: 800px;
             font-family: var(--font-ui);
         }
-        .logos {
+        
+        /* Layout dos Logos Institucionais */
+        .logos-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
             margin-top: 45px;
-            max-width: 650px;
-            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .partner-logo {
             height: auto;
-            /* Filtro para integrar melhor as logos ao fundo */
-            mix-blend-mode: multiply; 
+            max-height: 70px; /* Altura controlada para equilíbrio visual */
+            width: auto;
+            max-width: 250px;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Mescla fundos brancos com o fundo cinza */
+            transition: transform 0.3s;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.02);
         }
 
         .developer-section {
@@ -515,6 +534,8 @@
             .section-title { font-size: 1.8rem; }
             .btn-cta { padding: 15px 30px; width: 100%; }
             .hero-logo { width: 90%; max-width: 350px; }
+            .logos-wrapper { gap: 25px; }
+            .partner-logo { max-height: 55px; }
         }
     </style>
 <script type="importmap">
@@ -679,7 +700,11 @@
                 Edital: Chamamento Público N° 1/2023 | Processo Administrativo: Nº 4198/2023
             </p>
 
-            <img src="https://adeusnossossonhos.com.br/wp-content/uploads/2025/08/Paulo-Gustavo-1024x389.png" alt="Logos Institucionais: Lei Paulo Gustavo, Ministério da Cultura" class="logos">
+            <!-- Container Logos Institucionais -->
+            <div class="logos-wrapper">
+                <img src="https://adeusnossossonhos.com.br/prefeitura-esteio-rs.png" alt="Prefeitura de Esteio" class="partner-logo">
+                <img src="https://adeusnossossonhos.com.br/lei-paulo-gustavo.png" alt="Lei Paulo Gustavo - Governo Federal" class="partner-logo">
+            </div>
             
             <div class="developer-section">
                 <span>&copy; 2025 Rodrigo Fontoura de Oliveira.</span>
