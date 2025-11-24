@@ -1,71 +1,508 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>aDeus nossos SONhoS | Filme Oficial</title>
-    
-    <!-- Fonts -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aDeus nossos SONhoS | Curta-metragem Oficial</title>
+    <meta name="description" content="Landing Page Oficial do curta-metragem gaúcho aDeus nossos SONhoS. Um drama sobre Rock, Nostalgia e Redenção.">
+
+    <!-- Google Fonts (Carregamento Otimizado) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              vintageBlack: '#1C1C1C',
-              burntRed: '#B22222',
-              fadedGold: '#D4A017',
-              antiqueBeige: '#E3C6A0',
-            },
-            fontFamily: {
-              sans: ['Poppins', 'sans-serif'],
-              serif: ['Libre Baskerville', 'serif'],
-            },
-            backgroundImage: {
-              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E')",
-            }
-          }
-        }
-      }
-    </script>
+
     <style>
-      body {
-        background-color: #1C1C1C;
-        color: #E3C6A0;
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #1C1C1C;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #B22222;
-      }
+        /* --- RESUMO DE VARIÁVEIS (PALETA RETRÔ ROCK) --- */
+        :root {
+            --bg-color: #1C1C1C;
+            --text-main: #E3C6A0; /* Bege Antigo */
+            --text-white: #F5F5F5;
+            --accent-red: #B22222; /* Vermelho Queimado */
+            --accent-gold: #D4A017; /* Dourado Desbotado */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            --font-title: 'Poppins', sans-serif;
+            --font-serif: 'Libre Baskerville', serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- TEXTURA DE FILME (NOISE LEVE CSS) --- */
+        /* Otimização: SVG Data URI estático em vez de Canvas JS */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.6;
+        }
+
+        /* --- TIPOGRAFIA & UTILITÁRIOS --- */
+        h1, h2, h3, .btn { font-family: var(--font-title); }
+        .text-red { color: var(--accent-red); }
+        .text-gold { color: var(--accent-gold); }
+        .uppercase { text-transform: uppercase; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- ANIMAÇÕES DE SCROLL (Fade In) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Ambient Light */
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(178,34,34,0.15) 0%, rgba(28,28,28,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .title-top {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            overflow: hidden; /* Para o efeito de slide down */
+        }
+
+        /* Animação A */
+        .letter-a {
+            font-size: 4rem;
+            font-style: italic;
+            color: var(--text-white);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 0.5s;
+        }
+
+        /* Animação DEUS (Desce) */
+        .word-deus {
+            font-size: 6rem;
+            font-weight: 800;
+            color: var(--text-white);
+            line-height: 1;
+            transform: translateY(-150%);
+            animation: slideDown 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
+        }
+
+        /* Animação NOSSOS (Balança) */
+        .word-nossos {
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--text-main);
+            margin: 10px 0;
+            opacity: 0;
+            transform-origin: center top;
+            animation: fadeIn 1s ease-out forwards 2s, pendulum 4s ease-in-out infinite 2.5s;
+        }
+
+        /* Animação SONHOS (Grande e Vermelho) */
+        .word-sonhos {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(to bottom, var(--accent-red), #5c0b0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 0.9;
+            opacity: 0;
+            transform: scale(1.2);
+            filter: blur(10px);
+            animation: dramaticEnter 1.5s ease-out forwards 3s;
+        }
+
+        .subtitle {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 4.5s;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-150%); } to { transform: translateY(0); } }
+        @keyframes pendulum { 
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+        @keyframes dramaticEnter {
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        /* --- TRAILER SECTION --- */
+        #trailer {
+            padding: 80px 0;
+            background: rgba(0,0,0,0.2);
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--text-white);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            background: #000;
+            box-shadow: 0 0 30px rgba(178, 34, 34, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* --- SYNOPSIS & CHARACTERS --- */
+        #synopsis {
+            padding: 100px 0;
+        }
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .synopsis-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: rgba(227, 198, 160, 0.9);
+        }
+        .char-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            transition: border-color 0.3s, transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .char-card:hover {
+            border-color: var(--accent-red);
+            transform: translateX(5px);
+        }
+        .char-role {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .char-name {
+            font-size: 1.5rem;
+            color: var(--text-white);
+            font-family: var(--font-title);
+            margin-bottom: 10px;
+        }
+
+        /* --- EVENT SECTION --- */
+        #event {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            background-image: linear-gradient(to top, var(--bg-color), rgba(28,28,28,0.8), var(--bg-color)), url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .event-box {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 60px 0;
+            display: inline-block;
+            width: 100%;
+        }
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .detail-item strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            font-family: var(--font-title);
+        }
+        .detail-item span {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 15px 40px;
+            font-family: var(--font-title);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(178, 34, 34, 0.4);
+            border: 1px solid transparent;
+        }
+        .btn-cta:hover {
+            background-color: #8a1a1a;
+            box-shadow: 0 0 25px rgba(178, 34, 34, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 60px 0;
+            text-align: center;
+        }
+        footer p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        .legal-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .tech-info {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+            display: inline-block;
+            width: 100%;
+            max-width: 800px;
+        }
+        .logos {
+            margin-top: 40px;
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .letter-a { font-size: 2.5rem; }
+            .word-deus { font-size: 3.5rem; }
+            .word-nossos { font-size: 2rem; }
+            .word-sonhos { font-size: 3.8rem; }
+            
+            .grid-layout { grid-template-columns: 1fr; }
+            .event-details { flex-direction: column; gap: 30px; }
+            
+            .section-title { font-size: 1.5rem; }
+        }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="title-container">
+            <div class="title-top">
+                <span class="letter-a">a</span>
+                <span class="word-deus">Deus</span>
+            </div>
+            <div class="word-nossos">nossos</div>
+            <h1 class="word-sonhos">SONhoS</h1>
+        </div>
+        <p class="subtitle">Um filme de Rodrigo Fontoura de Oliveira</p>
+    </header>
+
+    <!-- TRAILER SECTION -->
+    <section id="trailer">
+        <div class="container reveal">
+            <h2 class="section-title">Trailer Oficial</h2>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_AQUI" title="Trailer aDeus nossos SONhoS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-style: italic; opacity: 0.7;">
+                "Quando o sonho acaba, a música continua?"
+            </p>
+        </div>
+    </section>
+
+    <!-- SYNOPSIS SECTION -->
+    <section id="synopsis">
+        <div class="container grid-layout">
+            
+            <div class="synopsis-text reveal">
+                <h2 class="section-title" style="border: none; padding: 0; margin-bottom: 40px;">
+                    A Redenção através do <span class="text-red">Rock</span>
+                </h2>
+                <p>
+                    Rodrigo é um músico que tocou o céu com as mãos, mas esqueceu de manter os pés no chão. 
+                    Mergulhado em uma arrogância silenciosa, ele vê sua banda, seus amigos e sua família 
+                    se distanciarem à medida que sua obsessão pelo sucesso o consome.
+                </p>
+                <p>
+                    <strong>"aDeus nossos SONhoS"</strong> não é apenas sobre música. É sobre o silêncio ensurdecedor 
+                    que fica quando o show acaba. É uma jornada nostálgica e visceral sobre voltar 
+                    para casa quando todas as portas parecem fechadas.
+                </p>
+            </div>
+
+            <div class="characters-list">
+                <!-- Card 1 -->
+                <div class="char-card reveal">
+                    <span class="char-role">O Músico Perdido</span>
+                    <h3 class="char-name">Rodrigo</h3>
+                    <p>Talentoso mas consumido pelo ego. Busca reencontrar sua voz não nos palcos, mas na própria alma.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="char-card reveal">
+                    <span class="char-role">A Consciência</span>
+                    <h3 class="char-name">Igor</h3>
+                    <p>Aquele que permaneceu quando a fama se foi. Um espelho duro da realidade que Rodrigo tenta evitar.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="char-card reveal">
+                    <span class="char-role">O Porto Seguro</span>
+                    <h3 class="char-name">Lilian</h3>
+                    <p>A força silenciosa que mantém os fragmentos da família unidos enquanto o sonho desmorona.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENT SECTION -->
+    <section id="event">
+        <div class="container">
+            <div class="event-box reveal">
+                <p class="text-gold" style="font-style: italic; margin-bottom: 10px;">Grande Estreia</p>
+                <h2 class="uppercase" style="font-size: 3rem; color: var(--text-white); margin-bottom: 20px;">Lançamento Oficial</h2>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <strong>29 NOV</strong>
+                        <span>2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Praça Coração de Maria</strong>
+                        <span>Esteio / RS</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Sarau ao Natural</strong>
+                        <span>Entrada Franca</span>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-cta">Confirmar Presença</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer>
+        <div class="container">
+            <p class="legal-text">
+                O curta-metragem gaúcho <strong>'aDeus nossos SONhoS'</strong> é um projeto cultural independente realizado por Rodrigo Fontoura de Oliveira. A sua produção foi viabilizada através da seleção no edital de fomento ao audiovisual da Prefeitura de Esteio, com recursos da Lei Paulo Gustavo.
+            </p>
+            
+            <p class="tech-info">
+                Edital: Chamamento Público N° 1/2023 | Processo Administrativo: Nº 4198/2023
+            </p>
+
+            <img src="https://adeusnossossonhos.com.br/wp-content/uploads/2025/08/Paulo-Gustavo-1024x389.png" alt="Logos Institucionais: Lei Paulo Gustavo, Ministério da Cultura" class="logos">
+            
+            <p style="margin-top: 40px; font-size: 0.7rem; color: #999;">
+                &copy; 2025 Rodrigo Fontoura de Oliveira.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE ANIMAÇÃO AO ROLAR (Super Leve) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.15 // Ativa quando 15% do elemento estiver visível
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            // Seleciona todos os elementos com a classe .reveal
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
 </html>
