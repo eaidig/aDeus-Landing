@@ -310,6 +310,36 @@
             fill: currentColor;
         }
 
+        /* YouTube Subscribe Button Styles */
+        .yt-subscribe-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .yt-subscribe-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #CC0000; /* YouTube Red */
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .yt-subscribe-btn:hover {
+            background-color: #e60000;
+        }
+        .yt-icon {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
         /* --- SYNOPSIS & CHARACTERS --- */
         #synopsis {
             padding: 100px 0;
@@ -488,6 +518,33 @@
             transform: scale(1.02);
         }
 
+        /* Layout Gestão/Escritório */
+        .management-section {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .management-label {
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: var(--font-ui);
+        }
+        .management-logo {
+            height: 40px;
+            width: auto;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            /* Pequeno ajuste para garantir que o roxo apareça bem no fundo cinza */
+        }
+        .management-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
         .developer-section {
             margin-top: 60px;
             padding-top: 20px;
@@ -575,6 +632,16 @@
                 <iframe src="https://www.youtube.com/embed/VIDEO_ID_AQUI" title="Trailer aDeus nossos SONhoS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             
+            <!-- YouTube Subscribe Button -->
+            <div class="yt-subscribe-wrapper">
+                <a href="https://www.youtube.com/channel/SEU_ID_DO_CANAL_AQUI?sub_confirmation=1" target="_blank" class="yt-subscribe-btn" aria-label="Inscreva-se no canal oficial">
+                    <svg class="yt-icon" viewBox="0 0 24 24" focusable="false">
+                        <path d="M21.58 7.19c-.23-.86-.9-1.54-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42c-.86.23-1.54.9-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.9 1.54 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42c.86-.23 1.54-.9 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"></path>
+                    </svg>
+                    Inscrever-se
+                </a>
+            </div>
+
             <p style="text-align: center; margin-top: 20px; font-style: italic; opacity: 0.7;">
                 "Quando o sonho acaba, a música continua?"
             </p>
@@ -704,6 +771,14 @@
             <div class="logos-wrapper">
                 <img src="https://adeusnossossonhos.com.br/prefeitura-esteio-rs.png" alt="Prefeitura de Esteio" class="partner-logo">
                 <img src="https://adeusnossossonhos.com.br/lei-paulo-gustavo.png" alt="Lei Paulo Gustavo - Governo Federal" class="partner-logo">
+            </div>
+
+            <!-- Logo Escritório (Organização) -->
+            <div class="management-section">
+                <p class="management-label">Gestão de Projetos</p>
+                <img src="https://escritorio.art.br/wp-content/uploads/2024/03/escritorio-logo-rgb-png-roxo.png" 
+                     alt="Escritório - Gestão de Projetos Culturais" 
+                     class="management-logo">
             </div>
             
             <div class="developer-section">
