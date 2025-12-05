@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5P9PQNMK');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Analytics 4 (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KCGRTPTFPP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KCGRTPTFPP');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '712448051371777');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -254,13 +271,36 @@
 
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* --- TRAILER SECTION --- */
+        /* --- TRAILER SECTION - CINEMA STYLE --- */
         #trailer {
-            padding: 80px 0;
-            background: rgba(0,0,0,0.2);
+            padding: 80px 0 150px 0; /* Extra padding at bottom for audience */
+            background-color: #050505;
             position: relative;
-            z-index: 5; /* Acima do background fixo do hero se houver overflow */
+            z-index: 5;
+            
+            /* Imagem da Plateia (Cinema Audience) */
+            background-image: 
+                linear-gradient(to bottom, var(--bg-color) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.8) 100%),
+                url('https://images.unsplash.com/photo-1517604931442-71053e68cc23?q=80&w=2066&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            box-shadow: inset 0 50px 100px #000;
         }
+        
+        /* Luz de Projeção vindo do fundo */
+        #trailer::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 500px;
+            background: radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .section-title {
             font-size: 2.5rem;
             color: var(--text-white);
@@ -271,15 +311,28 @@
             letter-spacing: 1px;
             font-family: var(--font-ui);
             font-weight: 800;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
+
+        /* Moldura da Tela de Cinema */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             background: #000;
-            box-shadow: 0 0 30px rgba(178, 34, 34, 0.1);
-            border: 1px solid rgba(255,255,255,0.1);
+            /* Efeito de brilho da tela (Screen Glow) */
+            box-shadow: 
+                0 0 60px rgba(255, 255, 255, 0.1), 
+                0 0 20px rgba(178, 34, 34, 0.2),
+                0 20px 50px rgba(0,0,0,0.8); /* Sombra em baixo */
+            border: 8px solid #111; /* Borda da tela */
+            border-radius: 4px;
+            z-index: 2;
+            overflow: hidden;
         }
+        
         .video-wrapper iframe {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -289,7 +342,9 @@
         .yt-subscribe-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
         }
         .yt-subscribe-btn {
             display: inline-flex;
@@ -305,6 +360,7 @@
             text-decoration: none;
             transition: background-color 0.2s;
             border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .yt-subscribe-btn:hover {
             background-color: #e60000;
@@ -320,18 +376,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(20, 20, 20, 0.85); /* Fundo mais escuro para ler sobre a plateia */
             border: 1px solid rgba(212, 160, 23, 0.2);
             border-radius: 8px;
             text-align: center;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         .comment-cta-text {
             color: var(--text-white);
             font-family: var(--font-ui);
             font-size: 1.1rem;
             margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,1);
         }
         .comment-btn {
             display: inline-block;
@@ -359,21 +420,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 40px;
+            margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
             width: 100%;
             max-width: 400px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 2;
         }
         .share-label {
             font-family: var(--font-ui);
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #666;
+            color: #aaa;
             margin-bottom: 15px;
+            background: rgba(0,0,0,0.6);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
         .share-icons {
             display: flex;
@@ -389,7 +455,8 @@
             border-radius: 50%;
             color: var(--text-white);
             transition: all 0.3s ease;
-            background: rgba(255,255,255,0.02);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
         }
         .share-btn:hover {
             border-color: var(--accent-gold);
@@ -570,18 +637,20 @@
 
         .partner-logo {
             height: auto;
-            max-height: 80px; /* Aumentado levemente para melhor visibilidade */
+            max-height: 80px; 
             width: auto;
-            max-width: 100%; /* Garante responsividade em telas pequenas */
+            max-width: 100%; 
             object-fit: contain;
-            mix-blend-mode: multiply; /* Mescla fundos brancos com o fundo cinza */
-            opacity: 0.8; /* Opacidade inicial para destaque no hover */
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            mix-blend-mode: multiply; 
+            opacity: 0.75; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            filter: grayscale(30%); 
         }
         
         .partner-logo:hover {
-            transform: scale(1.08); /* Aumento maior no hover */
-            opacity: 1; /* Opacidade total */
+            transform: scale(1.1); 
+            opacity: 1; 
+            filter: grayscale(0%);
         }
 
         /* Layout Gestão/Escritório */
@@ -673,10 +742,11 @@
 </script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5P9PQNMK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- Meta Pixel Code (noscript) -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=712448051371777&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code (noscript) -->
 
     <!-- HERO SECTION -->
     <header class="hero">
@@ -703,7 +773,7 @@
                 <iframe 
                     width="560" 
                     height="315" 
-                    src="https://www.youtube.com/embed/kfzzbZqHU1c" 
+                    src="https://www.youtube.com/embed/YKNfoYWEWyQ" 
                     title="aDeus nossos SONhoS - Trailer Oficial" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -727,7 +797,7 @@
                 <p class="comment-cta-text">
                     Gostou do filme? O que você achou da jornada do Rodrigo?
                 </p>
-                <a href="https://www.youtube.com/watch?v=kfzzbZqHU1c" target="_blank" class="comment-btn">
+                <a href="https://www.youtube.com/watch?v=YKNfoYWEWyQ" target="_blank" class="comment-btn">
                     DEIXE SEU COMENTÁRIO NO YOUTUBE
                 </a>
             </div>
