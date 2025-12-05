@@ -653,6 +653,48 @@
             filter: grayscale(0%);
         }
 
+        /* Seção Realização */
+        .realizacao-section {
+            margin-top: 50px;
+            border-top: 1px solid #ccc;
+            padding-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .realizacao-label {
+            font-family: var(--font-ui);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .studio-link {
+            text-decoration: none;
+            color: #333;
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        .studio-link:hover {
+            color: var(--accent-red);
+        }
+
+        .separator {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
         /* Layout Gestão/Escritório */
         .management-section {
             margin-top: 40px;
@@ -669,7 +711,7 @@
             font-family: var(--font-ui);
         }
         .management-logo {
-            height: 70px;
+            height: 100px; /* Aumentado para melhor visualização */
             width: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -928,12 +970,22 @@
                 <img src="https://adeusnossossonhos.com.br/prefeitura-esteio-rs.png" alt="Prefeitura de Esteio" class="partner-logo">
                 <img src="https://adeusnossossonhos.com.br/lei-paulo-gustavo.png" alt="Lei Paulo Gustavo - Governo Federal" class="partner-logo">
             </div>
+            
+            <!-- Realização Section -->
+            <div class="realizacao-section">
+                <div class="realizacao-col">
+                    <span class="realizacao-label">Realização</span>
+                    <a href="https://digli.com.br" target="_blank" class="studio-link">DigLi Estúdio</a>
+                    <span class="separator"> | </span>
+                    <a href="https://pigorproducoes.com.br" target="_blank" class="studio-link">Pigor Produções</a>
+                </div>
+            </div>
 
             <!-- Logo Escritório (Organização) -->
             <div class="management-section">
                 <p class="management-label">Gestão de Projetos</p>
                 <a href="https://escritorio.art.br" target="_blank" rel="noopener noreferrer">
-                    <img src="https://escritorio.art.br/wp-content/uploads/2024/03/escritorio-logo-rgb-png-roxo.png" 
+                    <img src="https://escritorio.art.br/escritorio-logo-rgb-png-roxo.png" 
                          alt="Escritório - Gestão de Projetos Culturais" 
                          class="management-logo">
                 </a>
